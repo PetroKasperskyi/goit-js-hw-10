@@ -1,0 +1,47 @@
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+  width: 428px;
+}
+.breed-select {
+  display: block;
+  max-width: 428px;
+  margin: 50px auto;
+}
+.cat-info {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+}
+.title {
+  margin: 0 auto;
+  font-size: 32px;
+  font-weight: 700;
+  color: rgb(132, 0, 255);
+}
+.sub-title {
+  margin: 0 auto;
+  font-size: 24px;
+  font-weight: 500;
+  color: rgb(252, 0, 197);
+}
+
+.descr {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 18px;
+}
+
+.invisible {
+  display: none;
+}
