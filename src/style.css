@@ -27,13 +27,13 @@ img {
   margin: 0 auto;
   font-size: 32px;
   font-weight: 700;
-  color: rgb(132, 0, 255);
+  color: rgba(255, 38, 0, 0.959);
 }
 .sub-title {
   margin: 0 auto;
   font-size: 24px;
   font-weight: 500;
-  color: rgb(252, 0, 197);
+  color: rgba(0, 25, 252, 0.692);
 }
 
 .descr {

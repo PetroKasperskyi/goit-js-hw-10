@@ -1,4 +1,4 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import { getBreeds, getCatByBreed } from './cat-api.js';
 import Notiflix from 'notiflix';
 import 'notiflix/src/notiflix.css';
 import SlimSelect from 'slim-select';
@@ -7,7 +7,7 @@ import 'slim-select/dist/slimselect.css';
 Notiflix.Notify.init({
   position: 'center-top',
   distance: '40px',
-  timeout: 3600000,
+  timeout: 360,
 });
 
 let eventError = false;
@@ -18,26 +18,26 @@ const refs = {
 };
 
 startLoading(refs.select);
-fetchBreeds()
+getBreeds()
   .then(data => {
     if (!data.length) throw new Error('Data not found');
     return data.reduce(
-      (markup, currentEl) => markup + createSelectElement(currentEl),
+      (markup, currentEl) => markup + createElement(currentEl),
       ''
     );
   })
-  .then(updateSelect)
+  .then(update)
   .catch(onError)
   .finally(endLoading);
 
 refs.select.addEventListener('change', onSelect);
 
-function createSelectElement({ id, name }) {
+function createElement({ id, name }) {
   return `<option data-placeholder="true"></option>;
   <option value="${id}">${name || 'Unknown'}</option>`;
 }
 
-function updateSelect(markup) {
+function update(markup) {
   refs.select.innerHTML = markup;
   new SlimSelect({
     select: refs.select,
@@ -50,20 +50,20 @@ function updateSelect(markup) {
 
 function onSelect(e) {
   startLoading(refs.divData);
-  fetchCatByBreed(e.target.value)
+  getCatByBreed(e.target.value)
     .then(data => {
       if (!data.length) throw new Error('Data not found');
       return data.reduce(
-        (markup, currentEl) => markup + createInfoElement(getArgs(currentEl)),
+        (markup, currentEl) => markup + createEl(getArgs(currentEl)),
         ''
       );
     })
-    .then(updateInfo)
+    .then(updateMarkup)
     .catch(onError)
     .finally(endLoading);
 }
 
-function createInfoElement({ url, name, description, temperament }) {
+function createEl ({ url, name, description, temperament }) {
   return ` <img
       class="cat_image"
       src="${url}"
@@ -76,7 +76,7 @@ function createInfoElement({ url, name, description, temperament }) {
     `;
 }
 
-function updateInfo(markup) {
+function updateMarkup(markup) {
   refs.divData.innerHTML = markup;
   refs.divData.classList.remove('invisible');
 }
