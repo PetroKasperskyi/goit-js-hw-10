@@ -94,7 +94,7 @@ function getArgs({ url, breeds }) {
 function startLoading(element) {
   if (eventError) afterError();
   element.classList.add('invisible');
-  Notiflix.Loading.hourglass('Loading data, please wait...', {
+  Notiflix.Loading.arrows('Loading data, please wait...', {
     backgroundColor: 'rgba(0,0,0,0.6)',
   });
 }

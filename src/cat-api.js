@@ -24,7 +24,7 @@ function fetchCatByBreed(breedId) {
 
   return fetch(`${BASE_URL}${END_POINT}?${PARAMS}`).then(responce => {
     if (!responce.ok) {
-      throw new Error(resp.statusText);
+      throw new Error(responce.statusText);
     }
     return responce.json();
   });
