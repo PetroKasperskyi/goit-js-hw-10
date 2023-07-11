@@ -7,7 +7,7 @@ import 'slim-select/dist/slimselect.css';
 Notiflix.Notify.init({
   position: 'center-top',
   distance: '40px',
-  timeout: 360,
+  timeout: 3600000,
 });
 
 let eventError = false;
@@ -45,7 +45,7 @@ function update(markup) {
       placeholderText: 'Select a breed',
     },
   });
-  refs.select.classList.remove('invisible');
+  refs.select.classList.remove('hidden');
 }
 
 function onSelect(e) {
@@ -78,7 +78,7 @@ function createEl ({ url, name, description, temperament }) {
 
 function updateMarkup(markup) {
   refs.divData.innerHTML = markup;
-  refs.divData.classList.remove('invisible');
+  refs.divData.classList.remove('hidden');
 }
 
 function getArgs({ url, breeds }) {
@@ -93,7 +93,7 @@ function getArgs({ url, breeds }) {
 
 function startLoading(element) {
   if (eventError) afterError();
-  element.classList.add('invisible');
+  element.classList.add('hidden');
   Notiflix.Loading.arrows('Loading data, please wait...', {
     backgroundColor: 'rgba(0,0,0,0.6)',
   });
